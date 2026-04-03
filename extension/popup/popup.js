@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5000";
+const API_URL = "http://localhost:5001";
 
 chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
   const url = tabs[0].url;

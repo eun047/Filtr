@@ -1,6 +1,6 @@
 const url = window.location.href;
 
-fetch("http://localhost:5000/analyze", {
+fetch("http://localhost:5001/analyze", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify({ url }),

@@ -3,7 +3,7 @@ from flask_cors import CORS
 from domain_checker import check_domain
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins="*")
 
 @app.route('/analyze', methods=['POST'])
 def analyze():
@@ -17,4 +17,4 @@ def analyze():
     return jsonify(result)
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    app.run(debug=True, port=5001)
