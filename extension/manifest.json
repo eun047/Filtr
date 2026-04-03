@@ -5,13 +5,7 @@
   "description": "학술 자료 신뢰도 분석 도구",
 
   "permissions": ["activeTab"],
-
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "js": ["content.js"]
-    }
-  ],
+  "host_permissions": ["http://localhost:5000/*"],
 
   "action": {
     "default_popup": "popup/popup.html"
