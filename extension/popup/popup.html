@@ -3,34 +3,120 @@
   <head>
     <meta charset="UTF-8" />
     <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
       body {
         width: 280px;
-        padding: 16px;
-        font-family: sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+        background: #ffffff;
+        border-radius: 20px;
+        overflow: hidden;
       }
-      h2 {
-        margin: 0 0 12px;
-        font-size: 16px;
+      .header {
+        padding: 20px 20px 16px;
+        border-bottom: 0.5px solid #e5e5e5;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
       }
-      #result {
-        font-size: 14px;
-        line-height: 1.6;
+      .header .title {
+        font-size: 15px;
+        font-weight: 500;
+        letter-spacing: -0.3px;
       }
-      .grade {
-        font-size: 32px;
-        font-weight: bold;
-        text-align: center;
-        margin: 8px 0;
+      .header .domain {
+        font-size: 11px;
+        color: #999;
+      }
+      .body {
+        padding: 24px 20px 20px;
+      }
+      .grade-row {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 20px;
+      }
+      .grade-box {
+        width: 56px;
+        height: 56px;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .grade-box span {
+        font-size: 26px;
+        font-weight: 500;
+      }
+      .score {
+        font-size: 18px;
+        font-weight: 500;
+        margin-bottom: 2px;
       }
       .reason {
-        color: #555;
+        font-size: 13px;
+        color: #888;
+      }
+      .rows {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 12px;
+        background: #f7f7f7;
+        border-radius: 10px;
+      }
+      .row .label {
+        font-size: 13px;
+        color: #888;
+      }
+      .row .value {
+        font-size: 13px;
+        font-weight: 500;
+      }
+      .loading {
+        font-size: 13px;
+        color: #aaa;
+        text-align: center;
+        padding: 20px;
       }
     </style>
   </head>
   <body>
-    <h2>🔍 Filtr</h2>
-    <div id="result">분석 중...</div>
-
+    <div class="header">
+      <span class="title">Filtr</span>
+      <span class="domain" id="domain">분석 중...</span>
+    </div>
+    <div class="body">
+      <div class="grade-row">
+        <div class="grade-box" id="grade-box">
+          <span id="grade-letter">-</span>
+        </div>
+        <div>
+          <p class="score" id="score">-</p>
+          <p class="reason" id="reason">분석 중...</p>
+        </div>
+      </div>
+      <div class="rows">
+        <div class="row">
+          <span class="label">신뢰 등급</span>
+          <span class="value" id="trust">-</span>
+        </div>
+        <div class="row">
+          <span class="label">인용 권장</span>
+          <span class="value" id="cite">-</span>
+        </div>
+      </div>
+    </div>
     <script src="popup.js"></script>
   </body>
 </html>
