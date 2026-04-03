@@ -1,12 +1,8 @@
-const url = window.location.href;
+chrome.runtime.sendMessage(
+  { type: "analyze", url: window.location.href },
+  (data) => {
+    if (!data) return;
 
-fetch("http://localhost:5001/analyze", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ url }),
-})
-  .then((res) => res.json())
-  .then((data) => {
     const banner = document.createElement("div");
     banner.style.cssText = `
     position: fixed;
@@ -20,11 +16,17 @@ fetch("http://localhost:5001/analyze", {
     z-index: 99999;
     background-color: ${getBannerColor(data.grade)};
     color: white;
+    transition: opacity 1s ease;
   `;
     banner.textContent = `Filtr | 신뢰도 ${data.grade}등급 (${data.score}점) — ${data.reason}`;
     document.body.prepend(banner);
-  })
-  .catch((err) => console.error("Filtr 오류:", err));
+
+    setTimeout(() => {
+      banner.style.opacity = "0";
+      setTimeout(() => banner.remove(), 1000);
+    }, 1000);
+  },
+);
 
 function getBannerColor(grade) {
   const colors = { A: "#2ecc71", B: "#3498db", C: "#f39c12", D: "#e74c3c" };

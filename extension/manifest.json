@@ -4,8 +4,19 @@
   "version": "1.0",
   "description": "학술 자료 신뢰도 분석 도구",
 
-  "permissions": ["activeTab"],
+  "permissions": ["activeTab", "tabs"],
   "host_permissions": ["http://localhost:5001/*"],
+
+  "background": {
+    "service_worker": "background.js"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["http://*/*"],
+      "js": ["content.js"]
+    }
+  ],
 
   "action": {
     "default_popup": "popup/popup.html"

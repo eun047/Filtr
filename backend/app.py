@@ -5,6 +5,13 @@ from domain_checker import check_domain
 app = Flask(__name__)
 CORS(app, origins="*")
 
+@app.after_request
+def add_headers(response):
+    response.headers['Access-Control-Allow-Private-Network'] = 'true'
+    return response
+
+from domain_checker import check_domain
+
 @app.route('/analyze', methods=['POST'])
 def analyze():
     data = request.get_json()
